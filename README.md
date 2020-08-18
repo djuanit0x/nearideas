@@ -1,4 +1,4 @@
-idea-bank
+Near Ideas
 ==================
 
 Quick Start
