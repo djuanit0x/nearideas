@@ -26,6 +26,4 @@ Exploring The Code
    place to start exploring. Note that it loads in `/src/index.js`, where you
    can learn how the frontend connects to the NEAR blockchain.
 3. Tests: there are different kinds of tests for the frontend and the smart
-   contract. The smart contract code gets tested with [cargo], and the frontend
-   code gets tested with [jest]. You can run both of these at once with `yarn
-   run test`.
+   contract. The smart contract code gets tested with [cargo].

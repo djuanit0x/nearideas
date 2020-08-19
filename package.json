@@ -4,43 +4,37 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "npm run build:contract && npm run build:web",
-    "build:contract": "node ./contract/build",
+    "build:contract": "cd contract && node ./build.js && cd ..",
     "build:web": "parcel build app/public/index.html --public-url ./",
-    "dev:deploy:contract": "near dev-deploy",
+    "dev:deploy:contract": "near dev-deploy --wasmFile ./contract/res/ideabank.wasm",
     "deploy:contract": "near deploy",
     "deploy:pages": "gh-pages -d dist/",
     "deploy": "npm run build && npm run deploy:contract && npm run deploy:pages",
     "prestart": "npm run build:contract && npm run dev:deploy:contract",
-    "start": "echo The app is starting! It will automatically open in your browser when ready && env-cmd -f ./neardev/dev-account.env parcel app/public/index.html --open",
+    "start": "env-cmd -f ./neardev/dev-account.env parcel src/index.html",
     "dev": "nodemon --watch assembly -e ts --exec \"npm run start\"",
-    "test": "(cd contract && cargo test -- --nocapture && cd ..) && npm run build:contract && jest test --runInBand"
+    "test": "(cd contract && cargo test -- --nocapture && cd ..) && npm run build:contract"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "env-cmd": "^10.1.0",
     "gh-pages": "^3.0.0",
-    "jest": "^26.0.1",
-    "jest-environment-node": "^26.0.0",
     "near-shell": "^0.24.9",
     "nodemon": "^2.0.3",
     "parcel-bundler": "^1.12.4",
-    "env-cmd": "^10.1.0",
     "shelljs": "^0.8.4"
   },
   "dependencies": {
+    "@babel/core": "^7.11.1",
+    "near-api-js": "^0.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "near-api-js": "^0.27.0",
     "regenerator-runtime": "^0.13.5"
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "jest": {
-    "testEnvironment": "near-shell/test_environment",
-    "testPathIgnorePatterns": [
-      "<rootDir>/assembly/",
-      "<rootDir>/node_modules/"
-    ]
   },
   "browserslist": {
     "production": [
