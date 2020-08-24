@@ -28361,6 +28361,23 @@ function getConfig(env) {
 }
 
 module.exports = getConfig;
+},{}],"../node_modules/@babel/runtime/helpers/defineProperty.js":[function(require,module,exports) {
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
 },{}],"../node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
 "use strict";
 
@@ -47416,7 +47433,31 @@ class CreateIdea extends _react.default.Component {
 
 var _default = CreateIdea;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"../node_modules/regenerator-runtime/runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Idea.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactBootstrap = require("react-bootstrap");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Idea = ({
+  idea
+}) => /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, {
+  className: "bg-gray-400 px-4 py-2 m-2"
+}, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.title), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.owner_account_id), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.vote_count), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.link), /*#__PURE__*/_react.default.createElement("button", {
+  className: "w-7 bg-yellow-300"
+}, "Up Vote"));
+
+var _default = Idea;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"../node_modules/regenerator-runtime/runtime.js":[function(require,module,exports) {
 var define;
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -48167,31 +48208,7 @@ try {
   Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}],"components/Idea.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _reactBootstrap = require("react-bootstrap");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const Idea = ({
-  idea
-}) => /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, {
-  className: "bg-gray-400 px-4 py-2 m-2"
-}, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.title), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.owner_account_id), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.vote_count), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.link), /*#__PURE__*/_react.default.createElement("button", {
-  className: "w-7 bg-yellow-300"
-}, "Up Vote"));
-
-var _default = Idea;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -48271,6 +48288,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _Header = _interopRequireDefault(require("./components/Header"));
@@ -48281,33 +48300,28 @@ var _reactRouterDom = require("react-router-dom");
 
 var _CreateIdea = _interopRequireDefault(require("./components/CreateIdea.js"));
 
-require("regenerator-runtime/runtime");
-
 var _Idea = _interopRequireDefault(require("./components/Idea"));
 
-require("./css/index.css");
+require("regenerator-runtime/runtime");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+require("./css/index.css");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class App extends _react.Component {
   constructor(props) {
     super(props);
-
-    _defineProperty(this, "signIn", async () => {
+    (0, _defineProperty2.default)(this, "signIn", async () => {
       await this.props.wallet.requestSignIn(window.nearConfig.contractName, _constants.APP_TITLE);
     });
-
-    _defineProperty(this, "signOut", async () => {
+    (0, _defineProperty2.default)(this, "signOut", async () => {
       this.props.wallet.signOut();
       setTimeout(window.location.replace(window.location.origin + window.location.pathname), 500);
     });
-
     this.state = {
       login: true,
       ideas: []
@@ -48368,7 +48382,7 @@ class App extends _react.Component {
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./components/Header":"components/Header.js","./constants":"constants.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CreateIdea.js":"components/CreateIdea.js","regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","./components/Idea":"components/Idea.js","./css/index.css":"css/index.css"}],"../node_modules/near-api-js/lib/key_stores/keystore.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/defineProperty":"../node_modules/@babel/runtime/helpers/defineProperty.js","react":"../node_modules/react/index.js","./components/Header":"components/Header.js","./constants":"constants.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/CreateIdea.js":"components/CreateIdea.js","./components/Idea":"components/Idea.js","regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","./css/index.css":"css/index.css"}],"../node_modules/near-api-js/lib/key_stores/keystore.js":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeyStore = void 0;
@@ -69614,7 +69628,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53971" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59556" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
