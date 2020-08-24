@@ -31,11 +31,16 @@ class CreateIdea extends React.Component {
         this.setState({
             toHome: true,
         });
-        console.log(this.props.contract)
-        await this.props.contract.create_idea({
-            title: this.state.title,
-            url: this.state.url,
-        });
+        console.log(this.props.contract);
+
+        try {
+            await this.props.contract.create_idea({
+                title: this.state.title,
+                url: this.state.url,
+            });
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     render() {

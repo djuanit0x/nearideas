@@ -29,6 +29,7 @@ class App extends Component {
 
     signOut = async () => {
         this.props.wallet.signOut();
+        setTimeout(window.location.replace(window.location.origin + window.location.pathname), 500);
     };
 
     render() {
@@ -40,9 +41,10 @@ class App extends Component {
             const list = ideas.map((idea, i) => <Idea idea={idea} key={`${i}`} />);
             return <div className='flex flex-col px-4 py-2 m-2'>{list}</div>;
         };
-
         return (
             <Router>
+                <Header signIn={this.signIn} signOut={this.signOut} wallet={this.props.wallet} />
+
                 <Switch>
                     <Route path='/create_idea'>
                         {redirectIfNotSignedIn(
@@ -53,10 +55,11 @@ class App extends Component {
                         path='/'
                         render={() => (
                             <div className='text-center'>
-                                <Header />
-                                <Link to='/create_idea' className='w-24 bg-yellow-300'>Create Idea</Link>
+                                <Link to='/create_idea' className='w-24 bg-yellow-300'>
+                                    Create Idea
+                                </Link>
                                 <span>Sort by</span>
-                                <h2 className='py-4'>List of Ideas: </h2>
+                                <h2 className='py-4'>Total Ideas: {this.state.ideas.length}</h2>
                                 <RenderIdeas ideas={this.state.ideas} />
                             </div>
                         )}
