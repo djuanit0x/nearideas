@@ -3,14 +3,14 @@
     "version": "0.0.1",
     "license": "UNLICENSED",
     "scripts": {
-        "build": "npm run build:contract && npm run build:web",
-        "build:contract": "cd contract && node ./build.js && cd ..",
+        "build": "npm run build:contract && npm run build:css && npm run build:web",
+        "build:contract": "cd contract && node ./build.js",
         "build:css": "postcss src/css/tailwind.css -o src/css/index.css",
-        "build:web": "parcel build app/public/index.html --public-url ./",
+        "build:web": "parcel build src/index.html --public-url ./",
         "dev:deploy:contract": "near dev-deploy --wasmFile ./contract/res/ideabank.wasm",
         "deploy:contract": "near deploy",
         "deploy:pages": "gh-pages -d dist/",
-        "deploy": "npm run build && npm run deploy:contract && npm run deploy:pages",
+        "deploy": "npm run build && npm run dev:deploy:contract && npm run deploy:pages",
         "prestart": "npm run build:contract && npm run dev:deploy:contract && npm run build:css",
         "start": "env-cmd -f ./neardev/dev-account.env parcel src/index.html",
         "dev": "nodemon --watch assembly -e ts --exec \"npm run start\"",
@@ -36,7 +36,7 @@
         "react-dom": "^16.11.0",
         "react-router-dom": "^5.2.0",
         "react-scripts": "3.4.0",
-        "regenerator-runtime": "^0.13.5",
+        "regenerator-runtime": "^0.13.7",
         "tailwindcss": "^1.7.3"
     },
     "eslintConfig": {

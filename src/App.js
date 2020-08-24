@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import {APP_TITLE} from "./constants";
 import {BrowserRouter as Router, Switch, Route, Redirect, Link} from "react-router-dom";
 import CreateIdea from "./components/CreateIdea.js";
+import 'regenerator-runtime/runtime';
 import Idea from "./components/Idea";
 import "./css/index.css";
 
