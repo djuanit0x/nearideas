@@ -1,51 +1,56 @@
 {
-  "name": "idea-bank",
-  "version": "0.0.1",
-  "license": "UNLICENSED",
-  "scripts": {
-    "build": "npm run build:contract && npm run build:web",
-    "build:contract": "cd contract && node ./build.js && cd ..",
-    "build:web": "parcel build app/public/index.html --public-url ./",
-    "dev:deploy:contract": "near dev-deploy --wasmFile ./contract/res/ideabank.wasm",
-    "deploy:contract": "near deploy",
-    "deploy:pages": "gh-pages -d dist/",
-    "deploy": "npm run build && npm run deploy:contract && npm run deploy:pages",
-    "prestart": "npm run build:contract && npm run dev:deploy:contract",
-    "start": "env-cmd -f ./neardev/dev-account.env parcel src/index.html",
-    "dev": "nodemon --watch assembly -e ts --exec \"npm run start\"",
-    "test": "(cd contract && cargo test -- --nocapture && cd ..) && npm run build:contract"
-  },
-  "devDependencies": {
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-react": "^7.10.4",
-    "env-cmd": "^10.1.0",
-    "gh-pages": "^3.0.0",
-    "near-shell": "^0.24.9",
-    "nodemon": "^2.0.3",
-    "parcel-bundler": "^1.12.4",
-    "shelljs": "^0.8.4"
-  },
-  "dependencies": {
-    "@babel/core": "^7.11.1",
-    "near-api-js": "^0.27.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.4.0",
-    "regenerator-runtime": "^0.13.5"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "idea-bank",
+    "version": "0.0.1",
+    "license": "UNLICENSED",
+    "scripts": {
+        "build": "npm run build:contract && npm run build:web",
+        "build:contract": "cd contract && node ./build.js && cd ..",
+        "build:css": "postcss src/css/tailwind.css -o src/css/index.css",
+        "build:web": "parcel build app/public/index.html --public-url ./",
+        "dev:deploy:contract": "near dev-deploy --wasmFile ./contract/res/ideabank.wasm",
+        "deploy:contract": "near deploy",
+        "deploy:pages": "gh-pages -d dist/",
+        "deploy": "npm run build && npm run deploy:contract && npm run deploy:pages",
+        "prestart": "npm run build:contract && npm run dev:deploy:contract && npm run build:css",
+        "start": "env-cmd -f ./neardev/dev-account.env parcel src/index.html",
+        "dev": "nodemon --watch assembly -e ts --exec \"npm run start\"",
+        "test": "(cd contract && cargo test -- --nocapture && cd ..) && npm run build:contract"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.11.0",
+        "@babel/preset-react": "^7.10.4",
+        "env-cmd": "^10.1.0",
+        "gh-pages": "^3.0.0",
+        "near-shell": "^0.24.9",
+        "nodemon": "^2.0.3",
+        "parcel-bundler": "^1.12.4",
+        "shelljs": "^0.8.4"
+    },
+    "dependencies": {
+        "@babel/core": "^7.11.1",
+        "autoprefix": "^1.0.1",
+        "near-api-js": "^0.27.0",
+        "postcss-cli": "^7.1.1",
+        "react": "^16.11.0",
+        "react-bootstrap": "^1.3.0",
+        "react-dom": "^16.11.0",
+        "react-scripts": "3.4.0",
+        "regenerator-runtime": "^0.13.5",
+        "tailwindcss": "^1.7.3"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }

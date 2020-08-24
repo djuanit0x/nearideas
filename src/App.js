@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Header from "./components/Header";
 import {APP_TITLE} from "./constants";
-import "./App.css";
+import "./css/index.css";
 
 class App extends Component {
     constructor(props) {
