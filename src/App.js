@@ -1,5 +1,4 @@
-import React, {useState, useEffect, Component} from "react";
-import logo from "./public/logo.svg";
+import React, {Component} from "react";
 import Header from "./components/Header";
 import {APP_TITLE} from "./constants";
 import "./App.css";
@@ -16,7 +15,7 @@ class App extends Component {
     componentDidMount() {
         this.props.contract.get_all_ideas().then((ideas) => {
             this.setState({
-                ideas,
+                ideas: Object.values(ideas),
             });
         });
     }
@@ -25,28 +24,39 @@ class App extends Component {
         await this.props.wallet.requestSignIn(window.nearConfig.contractName, APP_TITLE);
     };
 
-    signOut = async () => {};
+    signOut = async () => {
+        this.props.wallet.signOut();
+        setTimeout(this.signedOutFlow, 500);
+        console.log("after sign out", this.props.wallet.isSignedIn());
+    };
 
     render() {
-        console.log(this.state.ideas);
+        console.log(Object.values(this.state.ideas));
+        const RenderIdeas = ({ideas}) => {
+            if (ideas.length < 1) return null;
+
+            const list = ideas.map((idea, i) => (
+                <li key={`${i}`}>
+                    <p>Title: </p>
+                    <span>{idea.title}</span>
+                </li>
+            ));
+            return <ol>{list}</ol>;
+        };
+
         return (
             <div className='App'>
                 <Header />
-                <header className='App-header'>
-                    <img src={logo} className='App-logo' alt='logo' />
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
 
-                    <a
-                        className='App-link'
-                        href='https://reactjs.org'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                    >
-                        Learn React
-                    </a>
-                </header>
+                <RenderIdeas ideas={this.state.ideas} />
+                <a
+                    className='App-link'
+                    href='https://reactjs.org'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                >
+                    Learn React
+                </a>
             </div>
         );
     }
