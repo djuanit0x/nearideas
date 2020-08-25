@@ -1,5 +1,6 @@
-// const CONTRACT_NAME = 'idea-bank.testnet';
-const CONTRACT_NAME = 'near-ideas.idea-bank.testnet';
+const CONTRACT_NAME = 'djuanit0x.testnet';
+// const CONTRACT_NAME = 'dennis.idea-bank.testnet';
+// const CONTRACT_NAME = 'near-ideas.idea-bank.testnet';
 
 function getConfig(env) {
     switch (env) {

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Header from "./components/Header";
-import {APP_TITLE} from "./constants";
+import {APP_TITLE, MIN_DEPOSIT_AMOUNT} from "./constants";
 import {BrowserRouter as Router, Switch, Route, Redirect, Link} from "react-router-dom";
 import CreateIdea from "./components/CreateIdea.js";
 import Idea from "./components/Idea";
@@ -17,12 +17,30 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.props.contract.get_all_ideas().then((ideas) => {
-            this.setState({
-                ideas: Object.values(ideas),
+        try {
+            this.props.contract.get_all_ideas().then((ideas) => {
+                this.setState({
+                    ideas: Object.values(ideas),
+                });
             });
-        });
+        } catch (err) {
+            console.err(err);
+        }
     }
+
+    upvoteIdea = async ({idea_id}) => {
+        try {
+            await this.props.contract.upvote_idea(
+                {
+                    idea_id,
+                },
+                null,
+                MIN_DEPOSIT_AMOUNT
+            );
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     signIn = async () => {
         await this.props.wallet.requestSignIn(window.nearConfig.contractName, APP_TITLE);
@@ -39,7 +57,9 @@ class App extends Component {
         const RenderIdeas = ({ideas}) => {
             if (ideas.length < 1) return null;
 
-            const list = ideas.map((idea, i) => <Idea idea={idea} key={`${i}`} />);
+            const list = ideas.map((idea, i) => (
+                <Idea upvoteIdea={this.upvoteIdea} idea={idea} key={`${i}`} />
+            ));
             return <div className='flex flex-col px-4 py-2 m-2'>{list}</div>;
         };
         return (

@@ -12,6 +12,7 @@ const MIN_DEPOSIT_AMOUNT: u128 = 10_000_000_000_000_000_000_000_000;
 
 #[derive(Debug, Clone, Default, BorshDeserialize, BorshSerialize, Serialize, Deserialize)]
 pub struct Idea {
+    pub idea_id: u64,
     pub title: String,
     pub owner_account_id: String,
     pub link: String,
@@ -39,6 +40,7 @@ impl IdeaBankContract {
         self.ideas.insert(
             idea_id,
             Idea {
+                idea_id,
                 owner_account_id: env::signer_account_id().clone(),
                 title,
                 link,
@@ -161,6 +163,7 @@ mod tests {
         contract.ideas.insert(
             1,
             Idea {
+                idea_id: 1,
                 title,
                 link,
                 vote_count: 0,
