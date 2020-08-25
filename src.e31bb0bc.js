@@ -28286,6 +28286,7 @@ if ("development" === 'production') {
   module.exports = require('./cjs/react-dom.development.js');
 }
 },{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"config.js":[function(require,module,exports) {
+// const CONTRACT_NAME = 'idea-bank.testnet';
 const CONTRACT_NAME = 'near-ideas.idea-bank.testnet'; // process.env.CONTRACT_NAME ||
 // 'near-ideas.idea-bank.testnet';
 
@@ -47347,7 +47348,7 @@ class CreateIdea extends _react.default.Component {
     super(props);
     this.state = {
       title: "",
-      url: "",
+      link: "",
       toHome: false
     };
   }
@@ -47358,14 +47359,14 @@ class CreateIdea extends _react.default.Component {
     });
   }
 
-  updateUrl(val) {
+  updateLink(val) {
     this.setState({ ...this.state,
-      url: val
+      link: val
     });
   }
 
   async createIdea() {
-    if (this.state.url.length == 0 || this.state.url.length == 0) return null;
+    if (this.state.link.length == 0 || this.state.link.length == 0) return null;
     this.setState({
       toHome: true
     });
@@ -47374,7 +47375,7 @@ class CreateIdea extends _react.default.Component {
     try {
       await this.props.contract.create_idea({
         title: this.state.title,
-        url: this.state.url
+        link: this.state.link
       });
     } catch (err) {
       console.error(err);
@@ -47416,10 +47417,10 @@ class CreateIdea extends _react.default.Component {
       className: "my-5"
     }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
       onChange: e => {
-        this.updateUrl(e.target.value);
+        this.updateLink(e.target.value);
       },
       type: "text",
-      placeholder: "Url"
+      placeholder: "link"
     })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
       className: "my-5"
     }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
@@ -69570,7 +69571,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Initializing contract
 async function initContract() {
-  window.nearConfig = (0, _config.default)("development" || 'development');
+  window.nearConfig = (0, _config.default)("development" || "development");
   console.log("nearConfig", window.nearConfig); // Initializing connection to the NEAR DevNet.
 
   window.near = await nearlib.connect(Object.assign({
@@ -69581,16 +69582,14 @@ async function initContract() {
 
   window.walletAccount = new nearlib.WalletAccount(window.near); // Getting the Account ID. If unauthorized yet, it's just empty string.
 
-  window.accountId = window.walletAccount.getAccountId(); // Initializing our contract APIs by contract name and configuration.
-
-  let acct = await new nearlib.Account(window.near.connection, window.accountId);
-  window.contract = await new nearlib.Contract(acct, window.nearConfig.contractName, {
+  window.accountId = window.walletAccount.getAccountId();
+  window.contract = await new nearlib.Contract(window.walletAccount.account(), window.nearConfig.contractName, {
     // View methods are read only. They don't modify the state, but usually return some value.
-    viewMethods: ['get_all_ideas'],
+    viewMethods: ["get_all_ideas"],
     // Change methods can modify the state. But you don't receive the returned value when called.
-    changeMethods: ['create_idea', 'upvote_idea'],
+    changeMethods: ["create_idea", "upvote_idea"],
     // Sender is the account ID to initialize transactions.
-    sender: window.accountId
+    sender: window.walletAccount.getAccountId()
   });
 }
 
@@ -69598,7 +69597,7 @@ window.nearInitPromise = initContract().then(() => {
   _reactDom.default.render( /*#__PURE__*/_react.default.createElement(_App.default, {
     contract: window.contract,
     wallet: window.walletAccount
-  }), document.getElementById('root'));
+  }), document.getElementById("root"));
 }).catch(console.error);
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./config.js":"config.js","./App":"App.js","near-api-js":"../node_modules/near-api-js/lib/browser-index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -69628,7 +69627,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59547" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56542" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
