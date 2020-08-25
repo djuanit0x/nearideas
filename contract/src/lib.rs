@@ -1,8 +1,8 @@
 // To conserve gas, efficient serialization is achieved through Borsh (http://borsh.io/)
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
-use serde::{Deserialize, Serialize};
 use near_sdk::wee_alloc;
 use near_sdk::{env, near_bindgen};
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[global_allocator]
@@ -15,7 +15,7 @@ pub struct Idea {
     pub title: String,
     pub owner_account_id: String,
     pub link: String,
-    pub vote_count: u32
+    pub vote_count: u32,
 }
 
 type Deposits = HashMap<String, u128>;
@@ -33,7 +33,6 @@ fn add_deposit(deposits: &mut Deposits, account_id: String, deposit_amount: u128
 
 #[near_bindgen]
 impl IdeaBankContract {
-
     pub fn create_idea(&mut self, title: String, link: String) -> Option<Idea> {
         let idea_id = *self.ideas.keys().max().unwrap_or(&0u64) + 1;
 
@@ -43,17 +42,17 @@ impl IdeaBankContract {
                 owner_account_id: env::signer_account_id().clone(),
                 title,
                 link,
-                vote_count: 0
+                vote_count: 0,
             },
         );
         match self.ideas.get(&idea_id) {
             Some(idea) => Some(idea.clone()),
-            None => None
+            None => None,
         }
     }
 
     // pub fn get_all_Ideas
-    pub fn get_all_ideas(&self) -> &HashMap<u64, Idea>{
+    pub fn get_all_ideas(&self) -> &HashMap<u64, Idea> {
         &self.ideas
     }
 
@@ -73,7 +72,11 @@ impl IdeaBankContract {
         let idea = self.ideas.get_mut(&idea_id).unwrap();
         idea.vote_count += 1;
 
-        add_deposit(&mut self.deposits, sender_account_id.clone(), deposit_sender_amount);
+        add_deposit(
+            &mut self.deposits,
+            sender_account_id.clone(),
+            deposit_sender_amount,
+        );
 
         return idea;
     }
@@ -155,16 +158,21 @@ mod tests {
         let title = "A gambling gaming platform".to_string();
         let link = "https://www.247freepoker.com/".to_string();
 
-        contract.ideas.insert(1, Idea {
-            title,
-            link,
-            vote_count: 0,
-            owner_account_id: bob().clone()
-        });
+        contract.ideas.insert(
+            1,
+            Idea {
+                title,
+                link,
+                vote_count: 0,
+                owner_account_id: bob().clone(),
+            },
+        );
 
         let idea = contract.upvote_idea(1);
         assert_eq!(idea.vote_count, 1);
-        assert_eq!(contract.deposits.get(&eve()).unwrap().clone(), MIN_DEPOSIT_AMOUNT);
+        assert_eq!(
+            contract.deposits.get(&eve()).unwrap().clone(),
+            MIN_DEPOSIT_AMOUNT
+        );
     }
-
 }

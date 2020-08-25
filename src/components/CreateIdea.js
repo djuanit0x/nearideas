@@ -7,7 +7,7 @@ class CreateIdea extends React.Component {
         super(props);
         this.state = {
             title: "",
-            url: "",
+            link: "",
             toHome: false,
         };
     }
@@ -19,15 +19,15 @@ class CreateIdea extends React.Component {
         });
     }
 
-    updateUrl(val) {
+    updateLink(val) {
         this.setState({
             ...this.state,
-            url: val,
+            link: val,
         });
     }
 
     async createIdea() {
-        if (this.state.url.length == 0 || this.state.url.length == 0) return null;
+        if (this.state.link.length == 0 || this.state.link.length == 0) return null;
         this.setState({
             toHome: true,
         });
@@ -36,7 +36,7 @@ class CreateIdea extends React.Component {
         try {
             await this.props.contract.create_idea({
                 title: this.state.title,
-                url: this.state.url,
+                link: this.state.link,
             });
         } catch (err) {
             console.error(err);
@@ -73,10 +73,10 @@ class CreateIdea extends React.Component {
                             <Col className='my-5'>
                                 <Form.Control
                                     onChange={(e) => {
-                                        this.updateUrl(e.target.value);
+                                        this.updateLink(e.target.value);
                                     }}
                                     type='text'
-                                    placeholder='Url'
+                                    placeholder='link'
                                 />
                             </Col>
                             <Col className='my-5'>
