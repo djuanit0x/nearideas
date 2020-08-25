@@ -28286,9 +28286,8 @@ if ("development" === 'production') {
   module.exports = require('./cjs/react-dom.development.js');
 }
 },{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"config.js":[function(require,module,exports) {
-// const CONTRACT_NAME = 'idea-bank.testnet';
-const CONTRACT_NAME = 'near-ideas.idea-bank.testnet'; // process.env.CONTRACT_NAME ||
-// 'near-ideas.idea-bank.testnet';
+const CONTRACT_NAME = 'djuanit0x.testnet'; // const CONTRACT_NAME = 'dennis.idea-bank.testnet';
+// const CONTRACT_NAME = 'near-ideas.idea-bank.testnet';
 
 function getConfig(env) {
   switch (env) {
@@ -47324,9 +47323,11 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.APP_TITLE = void 0;
+exports.MIN_DEPOSIT_AMOUNT = exports.APP_TITLE = void 0;
 const APP_TITLE = "NEAR IDEAS";
 exports.APP_TITLE = APP_TITLE;
+const MIN_DEPOSIT_AMOUNT = "10000000000000000000000000";
+exports.MIN_DEPOSIT_AMOUNT = MIN_DEPOSIT_AMOUNT;
 },{}],"components/CreateIdea.js":[function(require,module,exports) {
 "use strict";
 
@@ -47449,11 +47450,13 @@ var _reactBootstrap = require("react-bootstrap");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const Idea = ({
-  idea
+  idea,
+  upvoteIdea
 }) => /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, {
   className: "bg-gray-400 px-4 py-2 m-2"
 }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.title), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.owner_account_id), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.vote_count), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.link), /*#__PURE__*/_react.default.createElement("button", {
-  className: "w-7 bg-yellow-300"
+  className: "w-7 bg-yellow-300",
+  onClick: () => upvoteIdea(idea)
 }, "Up Vote"));
 
 var _default = Idea;
@@ -48316,6 +48319,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 class App extends _react.Component {
   constructor(props) {
     super(props);
+    (0, _defineProperty2.default)(this, "upvoteIdea", async ({
+      idea_id
+    }) => {
+      try {
+        await this.props.contract.upvote_idea({
+          idea_id
+        }, null, _constants.MIN_DEPOSIT_AMOUNT);
+      } catch (err) {
+        console.error(err);
+      }
+    });
     (0, _defineProperty2.default)(this, "signIn", async () => {
       await this.props.wallet.requestSignIn(window.nearConfig.contractName, _constants.APP_TITLE);
     });
@@ -48330,11 +48344,15 @@ class App extends _react.Component {
   }
 
   componentDidMount() {
-    this.props.contract.get_all_ideas().then(ideas => {
-      this.setState({
-        ideas: Object.values(ideas)
+    try {
+      this.props.contract.get_all_ideas().then(ideas => {
+        this.setState({
+          ideas: Object.values(ideas)
+        });
       });
-    });
+    } catch (err) {
+      console.err(err);
+    }
   }
 
   render() {
@@ -48347,6 +48365,7 @@ class App extends _react.Component {
     }) => {
       if (ideas.length < 1) return null;
       const list = ideas.map((idea, i) => /*#__PURE__*/_react.default.createElement(_Idea.default, {
+        upvoteIdea: this.upvoteIdea,
         idea: idea,
         key: `${i}`
       }));
@@ -69627,7 +69646,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56542" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54645" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
