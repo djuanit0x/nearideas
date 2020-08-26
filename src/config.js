@@ -1,4 +1,4 @@
-const CONTRACT_NAME = 'djuanit0x.testnet';
+const CONTRACT_NAME = 'near-ideas.djuanit0x.testnet';
 // const CONTRACT_NAME = 'dennis.idea-bank.testnet';
 // const CONTRACT_NAME = 'near-ideas.idea-bank.testnet';
 

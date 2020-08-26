@@ -19,17 +19,57 @@ pub struct Idea {
     pub vote_count: u32,
 }
 
-type Deposits = HashMap<String, u128>;
+#[derive(Debug, Clone, Default, BorshDeserialize, BorshSerialize, Serialize, Deserialize)]
+pub struct Deposit {
+    pub owner_account_id: String,
+    pub amount: u128,
+}
+
+type DepositsByIdeas = HashMap<u64, Vec<Deposit>>;
+type DepositsByOwners = HashMap<String, Deposit>;
 
 #[near_bindgen]
 #[derive(Default, BorshDeserialize, BorshSerialize, Serialize, Deserialize)]
 pub struct IdeaBankContract {
-    deposits: Deposits,
+    deposits_by_ideas: DepositsByIdeas,
+    deposits_by_owners: DepositsByOwners,
     ideas: HashMap<u64, Idea>,
 }
 
-fn add_deposit(deposits: &mut Deposits, account_id: String, deposit_amount: u128) {
-    *deposits.entry(account_id).or_insert(0) += deposit_amount;
+fn add_deposit(
+    deposits_by_owners: &mut DepositsByOwners,
+    deposits_by_ideas: &mut DepositsByIdeas,
+    idea_id: u64,
+    account_id: String,
+    deposit_amount: u128,
+) -> bool {
+    deposits_by_owners
+        .entry(account_id.clone())
+        .or_insert(Deposit {
+            owner_account_id: account_id.clone(),
+            amount: 0,
+        })
+        .amount += deposit_amount;
+
+    match deposits_by_ideas.get_mut(&idea_id) {
+        Some(idea) => {
+            idea.push(Deposit {
+                owner_account_id: account_id.clone(),
+                amount: deposit_amount,
+            });
+            true
+        }
+        None => {
+            deposits_by_ideas.insert(
+                idea_id.clone(),
+                vec![Deposit {
+                    owner_account_id: account_id.clone(),
+                    amount: deposit_amount,
+                }],
+            );
+            false
+        }
+    }
 }
 
 #[near_bindgen]
@@ -53,34 +93,44 @@ impl IdeaBankContract {
         }
     }
 
-    // pub fn get_all_Ideas
-    pub fn get_all_ideas(&self) -> &HashMap<u64, Idea> {
-        &self.ideas
-    }
-
     #[payable]
     pub fn upvote_idea(&mut self, idea_id: u64) -> &Idea {
         let deposit_sender_amount: u128 = env::attached_deposit();
         let sender_account_id: String = env::signer_account_id();
-
-        // To do: check this assertion
         assert!(
             deposit_sender_amount >= MIN_DEPOSIT_AMOUNT,
             "The amount of deposit is {} and it should be greater than equal to {}",
             deposit_sender_amount,
             MIN_DEPOSIT_AMOUNT
         );
-
         let idea = self.ideas.get_mut(&idea_id).unwrap();
         idea.vote_count += 1;
-
         add_deposit(
-            &mut self.deposits,
+            &mut self.deposits_by_owners,
+            &mut self.deposits_by_ideas,
+            idea_id,
             sender_account_id.clone(),
             deposit_sender_amount,
         );
-
         return idea;
+    }
+
+    pub fn get_all_ideas(&self) -> &HashMap<u64, Idea> {
+        &self.ideas
+    }
+
+    pub fn get_deposits_by_idea(&self, idea_id: u64) -> Option<Vec<Deposit>> {
+        match self.deposits_by_ideas.get(&idea_id) {
+            Some(ideas) => Some(ideas.to_vec()),
+            None => None,
+        }
+    }
+
+    pub fn get_deposits_by_owner(&self, account_id: String) -> Option<Deposit> {
+        match self.deposits_by_owners.get(&account_id) {
+            Some(deposit) => Some(deposit.clone()),
+            None => None,
+        }
     }
 }
 
@@ -174,8 +224,17 @@ mod tests {
         let idea = contract.upvote_idea(1);
         assert_eq!(idea.vote_count, 1);
         assert_eq!(
-            contract.deposits.get(&eve()).unwrap().clone(),
+            contract.deposits_by_owners.get(&eve()).unwrap().amount,
             MIN_DEPOSIT_AMOUNT
+        );
+        assert_eq!(contract.deposits_by_ideas.get(&1).unwrap().len(), 1);
+        assert_eq!(
+            contract.deposits_by_ideas.get(&1).unwrap()[0].amount,
+            MIN_DEPOSIT_AMOUNT
+        );
+        assert_eq!(
+            contract.deposits_by_ideas.get(&1).unwrap()[0].owner_account_id,
+            eve()
         );
     }
 }
