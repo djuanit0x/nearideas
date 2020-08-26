@@ -47371,7 +47371,6 @@ class CreateIdea extends _react.default.Component {
     this.setState({
       toHome: true
     });
-    console.log(this.props.contract);
 
     try {
       await this.props.contract.create_idea({
@@ -47386,7 +47385,7 @@ class CreateIdea extends _react.default.Component {
   render() {
     if (this.state.toHome) {
       return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
-        to: "/"
+        to: "/nearideas"
       });
     }
 
@@ -48338,7 +48337,6 @@ class App extends _react.Component {
       setTimeout(window.location.replace(window.location.origin + window.location.pathname), 500);
     });
     this.state = {
-      login: true,
       ideas: []
     };
   }
@@ -48356,8 +48354,8 @@ class App extends _react.Component {
   }
 
   render() {
-    const redirectIfNotSignedIn = child => this.state.login ? child : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
-      to: "/"
+    const redirectIfNotSignedIn = child => this.props.wallet.isSignedIn() ? child : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
+      to: "/nearideas"
     });
 
     const RenderIdeas = ({
@@ -48390,7 +48388,7 @@ class App extends _react.Component {
       }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: "/create_idea",
         className: "w-24 bg-yellow-300"
-      }, "Create Idea"), /*#__PURE__*/_react.default.createElement("span", null, "Sort by"), /*#__PURE__*/_react.default.createElement("h2", {
+      }, "Create Idea"), /*#__PURE__*/_react.default.createElement("h2", {
         className: "py-4"
       }, "Total Ideas: ", this.state.ideas.length), /*#__PURE__*/_react.default.createElement(RenderIdeas, {
         ideas: this.state.ideas
@@ -69646,7 +69644,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61666" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50373" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
