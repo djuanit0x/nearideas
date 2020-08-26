@@ -1,5 +1,6 @@
 import React from "react";
 import {Row, Col, Form, Button, Alert} from "react-bootstrap";
+import {APP_PATH} from "../constants";
 import {Link, Redirect} from "react-router-dom";
 
 class CreateIdea extends React.Component {
@@ -31,7 +32,6 @@ class CreateIdea extends React.Component {
         this.setState({
             toHome: true,
         });
-        console.log(this.props.contract);
 
         try {
             await this.props.contract.create_idea({
@@ -45,12 +45,12 @@ class CreateIdea extends React.Component {
 
     render() {
         if (this.state.toHome) {
-            return <Redirect to='/' />;
+            return <Redirect to={APP_PATH} />;
         }
         return (
             <div className='flex flex-col'>
                 <div className='m-auto my-6'>
-                    <Link to='/'>Back</Link>
+                    <Link to={APP_PATH}>Back</Link>
                     <h2 className='bg-black text-white'>Create a new idea</h2>
 
                     <Form

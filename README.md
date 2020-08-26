@@ -9,9 +9,9 @@ Exploring The Code
 ==================
 
 1. The "backend" code lives in the `/contract` folder. This code gets deployed to
-   the NEAR blockchain when you run `yarn deploy:contract`
+   the NEAR blockchain when you run `yarn deploy:contract`.
 2. The frontend code lives in the `/src` folder. `/src/index.html` is a great
-   place to start exploring. Note that it loads in `/src/index.js`
+   place to start exploring. Note that it loads in `/src/index.js`.
 
 Contract
 ==================
@@ -20,15 +20,15 @@ Contract
 ### View Methods
 `get_all_ideas(&self) -> &HashMap<u64, Idea>`
 
-Returns all ideas as JSON object
+Returns all ideas as JSON object.
 
 `get_deposits_by_idea(&self, idea_id: u64) -> Option<Vec<Deposit>>`
 
-Returns all deposits made on an idea with `idea_id`
+Returns all deposits made on an idea by `idea_id`.
 
 `get_deposits_by_owner(&self, account_id: String) -> Option<Deposit>`
 
-Returns all deposits made on all ideas by `account_id`
+Returns all deposits made on all ideas by `account_id`.
 
 ### Mutator Methods
 `create_idea(&mut self, title: String, link: String) -> Option<Idea>`
@@ -40,11 +40,11 @@ Create an idea with title and link to the project that actually do the idea.
 Upvote an idea by one. Users need to deposit at least 10 Ⓝ to vote the idea.
 
 ## Contract States
-`deposits_by_ideas`: HashMap<u64, Vec<Deposit>> - all deposits on an idea.
+`deposits_by_ideas`: HashMap<u64, Vec<Deposit>> - All deposits on an idea.
 
 `deposits_by_owners`: HashMap<String, Deposit> - All ideas upvoted/deposited by the account id.
 
-`ideas`: HashMap<u64, Idea> - all ideas on the blockchain
+`ideas`: HashMap<u64, Idea> - all ideas on the blockchain.
 
 
 ### Deposit

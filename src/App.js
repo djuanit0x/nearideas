@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Header from "./components/Header";
-import {APP_TITLE, MIN_DEPOSIT_AMOUNT} from "./constants";
+import {APP_TITLE, MIN_DEPOSIT_AMOUNT, APP_PATH} from "./constants";
 import {BrowserRouter as Router, Switch, Route, Redirect, Link} from "react-router-dom";
 import CreateIdea from "./components/CreateIdea.js";
 import Idea from "./components/Idea";
@@ -11,7 +11,6 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            login: true,
             ideas: [],
         };
     }
@@ -29,6 +28,10 @@ class App extends Component {
     }
 
     upvoteIdea = async ({idea_id}) => {
+        if (!this.props.wallet.isSignedIn()) {
+            window.alert("You need to sign in to vote an idea!");
+            return;
+        }
         try {
             await this.props.contract.upvote_idea(
                 {
@@ -48,11 +51,12 @@ class App extends Component {
 
     signOut = async () => {
         this.props.wallet.signOut();
-        setTimeout(window.location.replace(window.location.origin + window.location.pathname), 500);
+        setTimeout(window.location.replace(window.location.origin + APP_PATH), 500);
     };
 
     render() {
-        const redirectIfNotSignedIn = (child) => (this.state.login ? child : <Redirect to='/' />);
+        const redirectIfNotSignedIn = (child) =>
+            this.props.wallet.isSignedIn() ? child : <Redirect to={APP_PATH} />;
 
         const RenderIdeas = ({ideas}) => {
             if (ideas.length < 1) return null;
@@ -62,6 +66,7 @@ class App extends Component {
             ));
             return <div className='flex flex-col px-4 py-2 m-2'>{list}</div>;
         };
+
         return (
             <Router>
                 <Header signIn={this.signIn} signOut={this.signOut} wallet={this.props.wallet} />
@@ -76,7 +81,15 @@ class App extends Component {
                         path='/'
                         render={() => (
                             <div className='text-center'>
-                                <Link to='/create_idea' className='w-24 bg-yellow-300'>
+                                <Link
+                                    onClick={() => {
+                                        if (!this.props.wallet.isSignedIn()) {
+                                            window.alert("You need to sign in to create a new idea!");
+                                        }
+                                    }}
+                                    to='/create_idea'
+                                    className='w-24 bg-yellow-300'
+                                >
                                     Create Idea
                                 </Link>
                                 <h2 className='py-4'>Total Ideas: {this.state.ideas.length}</h2>
