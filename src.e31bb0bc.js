@@ -47306,7 +47306,7 @@ var _default = ({
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center  w-1/2 p-2"
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
+    to: "/nearideas"
   }, "Near Ideas")), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center  w-1/2 p-2"
   }, wallet.isSignedIn() ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
@@ -47394,7 +47394,7 @@ class CreateIdea extends _react.default.Component {
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "m-auto my-6"
     }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      to: "/"
+      to: "/nearideas"
     }, "Back"), /*#__PURE__*/_react.default.createElement("h2", {
       className: "bg-black text-white"
     }, "Create a new idea"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form, {
@@ -48334,7 +48334,7 @@ class App extends _react.Component {
     });
     (0, _defineProperty2.default)(this, "signOut", async () => {
       this.props.wallet.signOut();
-      setTimeout(window.location.replace(window.location.origin + window.location.pathname), 500);
+      setTimeout(window.location.replace(window.location.origin + "/nearideas"), 500);
     });
     this.state = {
       ideas: []
@@ -48386,6 +48386,11 @@ class App extends _react.Component {
       render: () => /*#__PURE__*/_react.default.createElement("div", {
         className: "text-center"
       }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+        onClick: () => {
+          if (!this.props.wallet.isSignedIn()) {
+            window.alert("You need to sign in to create a new idea!");
+          }
+        },
         to: "/create_idea",
         className: "w-24 bg-yellow-300"
       }, "Create Idea"), /*#__PURE__*/_react.default.createElement("h2", {
@@ -69644,7 +69649,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50373" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59862" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
