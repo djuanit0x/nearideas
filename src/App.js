@@ -79,7 +79,6 @@ class App extends Component {
                                 <Link to='/create_idea' className='w-24 bg-yellow-300'>
                                     Create Idea
                                 </Link>
-                                <span>Sort by</span>
                                 <h2 className='py-4'>Total Ideas: {this.state.ideas.length}</h2>
                                 <RenderIdeas ideas={this.state.ideas} />
                             </div>

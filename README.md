@@ -1,29 +1,59 @@
 Near Ideas
 ==================
+Near dApp where people can post their ideas.
 
-Quick Start
-===========
 
-To run this project locally:
-
-1. Prerequisites: Make sure you've installed [Node.js] ≥ 12 and [Rust with correct target][Rust]
-2. Install dependencies: `yarn install`
-3. Run the local development server: `yarn dev` (see `package.json` for a
-   full list of `scripts` you can run with `yarn`)
-
-Now you'll have a local development environment backed by the NEAR TestNet!
-Go ahead and play with the app and the code. As you make code changes, the app will automatically reload.
-
+Public webpage: https://djuanit0x.github.io/nearideas
 
 Exploring The Code
 ==================
 
 1. The "backend" code lives in the `/contract` folder. This code gets deployed to
-   the NEAR blockchain when you run `yarn deploy:contract`. This sort of
-   code-that-runs-on-a-blockchain is called a "smart contract" – [learn more
-   about NEAR smart contracts][smart contract docs].
+   the NEAR blockchain when you run `yarn deploy:contract`
 2. The frontend code lives in the `/src` folder. `/src/index.html` is a great
-   place to start exploring. Note that it loads in `/src/index.js`, where you
-   can learn how the frontend connects to the NEAR blockchain.
-3. Tests: there are different kinds of tests for the frontend and the smart
-   contract. The smart contract code gets tested with [cargo].
+   place to start exploring. Note that it loads in `/src/index.js`
+
+Contract
+==================
+## Contract Methods
+
+### View Methods
+`get_all_ideas(&self) -> &HashMap<u64, Idea>`
+
+Returns all ideas as JSON object
+
+`get_deposits_by_idea(&self, idea_id: u64) -> Option<Vec<Deposit>>`
+
+Returns all deposits made on an idea with `idea_id`
+
+`get_deposits_by_owner(&self, account_id: String) -> Option<Deposit>`
+
+Returns all deposits made on all ideas by `account_id`
+
+### Mutator Methods
+`create_idea(&mut self, title: String, link: String) -> Option<Idea>`
+
+Create an idea with title and link to the project that actually do the idea.
+
+`upvote_idea(&mut self, idea_id: u64) -> &Idea`
+
+Upvote an idea by one. Users need to deposit at least 10 Ⓝ to vote the idea.
+
+## Contract States
+`deposits_by_ideas`: HashMap<u64, Vec<Deposit>> - all deposits on an idea.
+
+`deposits_by_owners`: HashMap<String, Deposit> - All ideas upvoted/deposited by the account id.
+
+`ideas`: HashMap<u64, Idea> - all ideas on the blockchain
+
+
+### Deposit
+- `owner_account_id`: String - Account id of the depositor.
+- `amount`: u128 - Amount of deposit.
+
+### Idea
+- `idea_id`: u64 - The id of the idea. Starting from 1 and increment by 1 for every new idea.
+- `title`: String - The title of your idea.
+- `owner_account_id`: String - Account id that creates the idea.
+- `link`: String - The link to a project that actually do the idea.
+- `vote_count`: u32 - Number of votes on the idea.
