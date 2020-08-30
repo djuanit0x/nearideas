@@ -47317,16 +47317,18 @@ var _default = ({
   wallet
 }) => {
   return /*#__PURE__*/_react.default.createElement(_reactBootstrap.Navbar, {
-    className: "flex  bg-blue-200"
+    className: "flex bg-blue-200"
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex justify-center  w-1/2 p-2"
+    className: "font-medium flex justify-center w-1/2 p-2"
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: _constants.APP_PATH
   }, "Near Ideas")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "flex justify-center  w-1/2 p-2"
+    className: "flex justify-center w-1/2 p-2"
   }, wallet.isSignedIn() ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+    className: "font-medium",
     onClick: signOut
   }, "Sign Out") : /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
+    className: "font-medium",
     onClick: signIn
   }, "Sign In")));
 };
@@ -47400,7 +47402,7 @@ class CreateIdea extends _react.default.Component {
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "m-auto my-6"
     }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      className: "border-solid border-4 border-black-200 p-2",
+      className: "border-solid border-4 border-black-200 p-2 hover:bg-gray-200 font-bold ",
       to: _constants.APP_PATH
     }, "Back"), /*#__PURE__*/_react.default.createElement("div", {
       className: "mt-4 text-xl font-medium"
@@ -47433,7 +47435,7 @@ class CreateIdea extends _react.default.Component {
     })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
       className: "my-5"
     }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-      className: "bg-blue-400 p-2",
+      className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
       variant: "primary",
       type: "submit"
     }, "Create"))))));
@@ -69696,7 +69698,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51460" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58239" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
