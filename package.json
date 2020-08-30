@@ -1,7 +1,7 @@
 {
-    "name": "idea-bank",
+    "name": "nearideas",
     "version": "0.0.1",
-    "license": "UNLICENSED",
+    "license": "MIT",
     "scripts": {
         "build": "npm run build:contract && npm run build:css && npm run build:web",
         "build:contract": "cd contract && node ./build.js",

@@ -64,40 +64,48 @@ class App extends Component {
             const list = ideas.map((idea, i) => (
                 <Idea upvoteIdea={this.upvoteIdea} idea={idea} key={`${i}`} />
             ));
-            return <div className='flex flex-col px-4 py-2 m-2'>{list}</div>;
+            return <div className='flex flex-col px-4 py-2 justify-center items-center'>{list}</div>;
         };
 
         return (
             <Router>
-                <Header signIn={this.signIn} signOut={this.signOut} wallet={this.props.wallet} />
+                <div className='space-y-5'>
+                    <Header signIn={this.signIn} signOut={this.signOut} wallet={this.props.wallet} />
 
-                <Switch>
-                    <Route path='/create_idea'>
-                        {redirectIfNotSignedIn(
-                            <CreateIdea contract={this.props.contract} wallet={this.props.wallet} />
-                        )}
-                    </Route>
-                    <Route
-                        path='/'
-                        render={() => (
-                            <div className='text-center'>
-                                <Link
-                                    onClick={() => {
-                                        if (!this.props.wallet.isSignedIn()) {
-                                            window.alert("You need to sign in to create a new idea!");
-                                        }
-                                    }}
-                                    to='/create_idea'
-                                    className='w-24 bg-yellow-300'
-                                >
-                                    Create Idea
-                                </Link>
-                                <h2 className='py-4'>Total Ideas: {this.state.ideas.length}</h2>
-                                <RenderIdeas ideas={this.state.ideas} />
-                            </div>
-                        )}
-                    />
-                </Switch>
+                    <Switch>
+                        <Route path='/create_idea'>
+                            {redirectIfNotSignedIn(
+                                <CreateIdea contract={this.props.contract} wallet={this.props.wallet} />
+                            )}
+                        </Route>
+                        <Route
+                            path='/'
+                            render={() => (
+                                <div className='text-center'>
+                                    <Link
+                                        onClick={() => {
+                                            if (!this.props.wallet.isSignedIn()) {
+                                                window.alert(
+                                                    "You need to sign in to create a new idea!"
+                                                );
+                                            }
+                                        }}
+                                        to='/create_idea'
+                                        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                                    >
+                                        Post a new idea
+                                    </Link>
+
+                                    <h2 className='py-4 font-bold'>
+                                        Total Ideas: {this.state.ideas.length}
+                                    </h2>
+
+                                    <RenderIdeas ideas={this.state.ideas} />
+                                </div>
+                            )}
+                        />
+                    </Switch>
+                </div>
             </Router>
         );
     }

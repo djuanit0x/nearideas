@@ -50,8 +50,15 @@ class CreateIdea extends React.Component {
         return (
             <div className='flex flex-col'>
                 <div className='m-auto my-6'>
-                    <Link to={APP_PATH}>Back</Link>
-                    <h2 className='bg-black text-white'>Create a new idea</h2>
+                    <Link
+                        className='border-solid border-4 border-black-200 p-2 hover:bg-gray-200 font-bold '
+                        to={APP_PATH}
+                    >
+                        Back
+                    </Link>
+                    <div className='mt-4 text-xl font-medium'>
+                        <h2 className='bg-black text-white p-2 text-center'>Create a new idea</h2>
+                    </div>
 
                     <Form
                         noValidate
@@ -67,7 +74,7 @@ class CreateIdea extends React.Component {
                                         this.updateTitle(e.target.value);
                                     }}
                                     type='text'
-                                    placeholder='Title'
+                                    placeholder='Title of your idea'
                                 />
                             </Col>
                             <Col className='my-5'>
@@ -76,11 +83,15 @@ class CreateIdea extends React.Component {
                                         this.updateLink(e.target.value);
                                     }}
                                     type='text'
-                                    placeholder='link'
+                                    placeholder='Link to your idea'
                                 />
                             </Col>
                             <Col className='my-5'>
-                                <Button className='bg-blue-400' variant='primary' type='submit'>
+                                <Button
+                                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                                    variant='primary'
+                                    type='submit'
+                                >
                                     Create
                                 </Button>
                             </Col>

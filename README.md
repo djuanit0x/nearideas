@@ -44,7 +44,7 @@ Upvote an idea by one. Users need to deposit at least 10 Ⓝ to vote the idea.
 
 `deposits_by_owners`: HashMap<String, Deposit> - All ideas upvoted/deposited by the account id.
 
-`ideas`: HashMap<u64, Idea> - all ideas on the blockchain.
+`ideas`: HashMap<u64, Idea> - All ideas on the blockchain.
 
 
 ### Deposit
