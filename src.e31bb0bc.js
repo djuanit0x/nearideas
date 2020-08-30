@@ -44230,7 +44230,20 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Accordion":"../node_modules/react-bootstrap/esm/Accordion.js","./AccordionContext":"../node_modules/react-bootstrap/esm/AccordionContext.js","./AccordionCollapse":"../node_modules/react-bootstrap/esm/AccordionCollapse.js","./AccordionToggle":"../node_modules/react-bootstrap/esm/AccordionToggle.js","./Alert":"../node_modules/react-bootstrap/esm/Alert.js","./Badge":"../node_modules/react-bootstrap/esm/Badge.js","./Breadcrumb":"../node_modules/react-bootstrap/esm/Breadcrumb.js","./BreadcrumbItem":"../node_modules/react-bootstrap/esm/BreadcrumbItem.js","./Button":"../node_modules/react-bootstrap/esm/Button.js","./ButtonGroup":"../node_modules/react-bootstrap/esm/ButtonGroup.js","./ButtonToolbar":"../node_modules/react-bootstrap/esm/ButtonToolbar.js","./Card":"../node_modules/react-bootstrap/esm/Card.js","./CardColumns":"../node_modules/react-bootstrap/esm/CardColumns.js","./CardDeck":"../node_modules/react-bootstrap/esm/CardDeck.js","./CardImg":"../node_modules/react-bootstrap/esm/CardImg.js","./CardGroup":"../node_modules/react-bootstrap/esm/CardGroup.js","./Carousel":"../node_modules/react-bootstrap/esm/Carousel.js","./CarouselItem":"../node_modules/react-bootstrap/esm/CarouselItem.js","./CloseButton":"../node_modules/react-bootstrap/esm/CloseButton.js","./Col":"../node_modules/react-bootstrap/esm/Col.js","./Collapse":"../node_modules/react-bootstrap/esm/Collapse.js","./Dropdown":"../node_modules/react-bootstrap/esm/Dropdown.js","./DropdownButton":"../node_modules/react-bootstrap/esm/DropdownButton.js","./Fade":"../node_modules/react-bootstrap/esm/Fade.js","./Form":"../node_modules/react-bootstrap/esm/Form.js","./FormControl":"../node_modules/react-bootstrap/esm/FormControl.js","./FormCheck":"../node_modules/react-bootstrap/esm/FormCheck.js","./FormFile":"../node_modules/react-bootstrap/esm/FormFile.js","./FormGroup":"../node_modules/react-bootstrap/esm/FormGroup.js","./FormLabel":"../node_modules/react-bootstrap/esm/FormLabel.js","./FormText":"../node_modules/react-bootstrap/esm/FormText.js","./Container":"../node_modules/react-bootstrap/esm/Container.js","./Image":"../node_modules/react-bootstrap/esm/Image.js","./Figure":"../node_modules/react-bootstrap/esm/Figure.js","./InputGroup":"../node_modules/react-bootstrap/esm/InputGroup.js","./Jumbotron":"../node_modules/react-bootstrap/esm/Jumbotron.js","./ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","./ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js","./Media":"../node_modules/react-bootstrap/esm/Media.js","./Modal":"../node_modules/react-bootstrap/esm/Modal.js","./ModalBody":"../node_modules/react-bootstrap/esm/ModalBody.js","./ModalDialog":"../node_modules/react-bootstrap/esm/ModalDialog.js","./ModalFooter":"../node_modules/react-bootstrap/esm/ModalFooter.js","./ModalTitle":"../node_modules/react-bootstrap/esm/ModalTitle.js","./Nav":"../node_modules/react-bootstrap/esm/Nav.js","./Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","./NavbarBrand":"../node_modules/react-bootstrap/esm/NavbarBrand.js","./NavDropdown":"../node_modules/react-bootstrap/esm/NavDropdown.js","./NavItem":"../node_modules/react-bootstrap/esm/NavItem.js","./NavLink":"../node_modules/react-bootstrap/esm/NavLink.js","./Overlay":"../node_modules/react-bootstrap/esm/Overlay.js","./OverlayTrigger":"../node_modules/react-bootstrap/esm/OverlayTrigger.js","./PageItem":"../node_modules/react-bootstrap/esm/PageItem.js","./Pagination":"../node_modules/react-bootstrap/esm/Pagination.js","./Popover":"../node_modules/react-bootstrap/esm/Popover.js","./PopoverTitle":"../node_modules/react-bootstrap/esm/PopoverTitle.js","./PopoverContent":"../node_modules/react-bootstrap/esm/PopoverContent.js","./ProgressBar":"../node_modules/react-bootstrap/esm/ProgressBar.js","./ResponsiveEmbed":"../node_modules/react-bootstrap/esm/ResponsiveEmbed.js","./Row":"../node_modules/react-bootstrap/esm/Row.js","./SafeAnchor":"../node_modules/react-bootstrap/esm/SafeAnchor.js","./Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","./SplitButton":"../node_modules/react-bootstrap/esm/SplitButton.js","./Tab":"../node_modules/react-bootstrap/esm/Tab.js","./TabContainer":"../node_modules/react-bootstrap/esm/TabContainer.js","./TabContent":"../node_modules/react-bootstrap/esm/TabContent.js","./Table":"../node_modules/react-bootstrap/esm/Table.js","./TabPane":"../node_modules/react-bootstrap/esm/TabPane.js","./Tabs":"../node_modules/react-bootstrap/esm/Tabs.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js","./Toast":"../node_modules/react-bootstrap/esm/Toast.js","./ToastBody":"../node_modules/react-bootstrap/esm/ToastBody.js","./ToastHeader":"../node_modules/react-bootstrap/esm/ToastHeader.js","./ToggleButton":"../node_modules/react-bootstrap/esm/ToggleButton.js","./ToggleButtonGroup":"../node_modules/react-bootstrap/esm/ToggleButtonGroup.js","./Tooltip":"../node_modules/react-bootstrap/esm/Tooltip.js"}],"../node_modules/resolve-pathname/esm/resolve-pathname.js":[function(require,module,exports) {
+},{"./Accordion":"../node_modules/react-bootstrap/esm/Accordion.js","./AccordionContext":"../node_modules/react-bootstrap/esm/AccordionContext.js","./AccordionCollapse":"../node_modules/react-bootstrap/esm/AccordionCollapse.js","./AccordionToggle":"../node_modules/react-bootstrap/esm/AccordionToggle.js","./Alert":"../node_modules/react-bootstrap/esm/Alert.js","./Badge":"../node_modules/react-bootstrap/esm/Badge.js","./Breadcrumb":"../node_modules/react-bootstrap/esm/Breadcrumb.js","./BreadcrumbItem":"../node_modules/react-bootstrap/esm/BreadcrumbItem.js","./Button":"../node_modules/react-bootstrap/esm/Button.js","./ButtonGroup":"../node_modules/react-bootstrap/esm/ButtonGroup.js","./ButtonToolbar":"../node_modules/react-bootstrap/esm/ButtonToolbar.js","./Card":"../node_modules/react-bootstrap/esm/Card.js","./CardColumns":"../node_modules/react-bootstrap/esm/CardColumns.js","./CardDeck":"../node_modules/react-bootstrap/esm/CardDeck.js","./CardImg":"../node_modules/react-bootstrap/esm/CardImg.js","./CardGroup":"../node_modules/react-bootstrap/esm/CardGroup.js","./Carousel":"../node_modules/react-bootstrap/esm/Carousel.js","./CarouselItem":"../node_modules/react-bootstrap/esm/CarouselItem.js","./CloseButton":"../node_modules/react-bootstrap/esm/CloseButton.js","./Col":"../node_modules/react-bootstrap/esm/Col.js","./Collapse":"../node_modules/react-bootstrap/esm/Collapse.js","./Dropdown":"../node_modules/react-bootstrap/esm/Dropdown.js","./DropdownButton":"../node_modules/react-bootstrap/esm/DropdownButton.js","./Fade":"../node_modules/react-bootstrap/esm/Fade.js","./Form":"../node_modules/react-bootstrap/esm/Form.js","./FormControl":"../node_modules/react-bootstrap/esm/FormControl.js","./FormCheck":"../node_modules/react-bootstrap/esm/FormCheck.js","./FormFile":"../node_modules/react-bootstrap/esm/FormFile.js","./FormGroup":"../node_modules/react-bootstrap/esm/FormGroup.js","./FormLabel":"../node_modules/react-bootstrap/esm/FormLabel.js","./FormText":"../node_modules/react-bootstrap/esm/FormText.js","./Container":"../node_modules/react-bootstrap/esm/Container.js","./Image":"../node_modules/react-bootstrap/esm/Image.js","./Figure":"../node_modules/react-bootstrap/esm/Figure.js","./InputGroup":"../node_modules/react-bootstrap/esm/InputGroup.js","./Jumbotron":"../node_modules/react-bootstrap/esm/Jumbotron.js","./ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","./ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js","./Media":"../node_modules/react-bootstrap/esm/Media.js","./Modal":"../node_modules/react-bootstrap/esm/Modal.js","./ModalBody":"../node_modules/react-bootstrap/esm/ModalBody.js","./ModalDialog":"../node_modules/react-bootstrap/esm/ModalDialog.js","./ModalFooter":"../node_modules/react-bootstrap/esm/ModalFooter.js","./ModalTitle":"../node_modules/react-bootstrap/esm/ModalTitle.js","./Nav":"../node_modules/react-bootstrap/esm/Nav.js","./Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","./NavbarBrand":"../node_modules/react-bootstrap/esm/NavbarBrand.js","./NavDropdown":"../node_modules/react-bootstrap/esm/NavDropdown.js","./NavItem":"../node_modules/react-bootstrap/esm/NavItem.js","./NavLink":"../node_modules/react-bootstrap/esm/NavLink.js","./Overlay":"../node_modules/react-bootstrap/esm/Overlay.js","./OverlayTrigger":"../node_modules/react-bootstrap/esm/OverlayTrigger.js","./PageItem":"../node_modules/react-bootstrap/esm/PageItem.js","./Pagination":"../node_modules/react-bootstrap/esm/Pagination.js","./Popover":"../node_modules/react-bootstrap/esm/Popover.js","./PopoverTitle":"../node_modules/react-bootstrap/esm/PopoverTitle.js","./PopoverContent":"../node_modules/react-bootstrap/esm/PopoverContent.js","./ProgressBar":"../node_modules/react-bootstrap/esm/ProgressBar.js","./ResponsiveEmbed":"../node_modules/react-bootstrap/esm/ResponsiveEmbed.js","./Row":"../node_modules/react-bootstrap/esm/Row.js","./SafeAnchor":"../node_modules/react-bootstrap/esm/SafeAnchor.js","./Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","./SplitButton":"../node_modules/react-bootstrap/esm/SplitButton.js","./Tab":"../node_modules/react-bootstrap/esm/Tab.js","./TabContainer":"../node_modules/react-bootstrap/esm/TabContainer.js","./TabContent":"../node_modules/react-bootstrap/esm/TabContent.js","./Table":"../node_modules/react-bootstrap/esm/Table.js","./TabPane":"../node_modules/react-bootstrap/esm/TabPane.js","./Tabs":"../node_modules/react-bootstrap/esm/Tabs.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js","./Toast":"../node_modules/react-bootstrap/esm/Toast.js","./ToastBody":"../node_modules/react-bootstrap/esm/ToastBody.js","./ToastHeader":"../node_modules/react-bootstrap/esm/ToastHeader.js","./ToggleButton":"../node_modules/react-bootstrap/esm/ToggleButton.js","./ToggleButtonGroup":"../node_modules/react-bootstrap/esm/ToggleButtonGroup.js","./Tooltip":"../node_modules/react-bootstrap/esm/Tooltip.js"}],"constants.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MIN_DEPOSIT_AMOUNT = exports.APP_PATH = exports.APP_TITLE = void 0;
+const APP_TITLE = "NEAR IDEAS";
+exports.APP_TITLE = APP_TITLE;
+const APP_PATH = "/nearideas";
+exports.APP_PATH = APP_PATH;
+const MIN_DEPOSIT_AMOUNT = "10000000000000000000000000";
+exports.MIN_DEPOSIT_AMOUNT = MIN_DEPOSIT_AMOUNT;
+},{}],"../node_modules/resolve-pathname/esm/resolve-pathname.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47292,6 +47305,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactBootstrap = require("react-bootstrap");
 
+var _constants = require("../constants");
+
 var _reactRouterDom = require("react-router-dom");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -47306,7 +47321,7 @@ var _default = ({
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center  w-1/2 p-2"
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/nearideas"
+    to: _constants.APP_PATH
   }, "Near Ideas")), /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-center  w-1/2 p-2"
   }, wallet.isSignedIn() ? /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
@@ -47317,18 +47332,7 @@ var _default = ({
 };
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"constants.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MIN_DEPOSIT_AMOUNT = exports.APP_TITLE = void 0;
-const APP_TITLE = "NEAR IDEAS";
-exports.APP_TITLE = APP_TITLE;
-const MIN_DEPOSIT_AMOUNT = "10000000000000000000000000";
-exports.MIN_DEPOSIT_AMOUNT = MIN_DEPOSIT_AMOUNT;
-},{}],"components/CreateIdea.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../constants":"constants.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/CreateIdea.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47339,6 +47343,8 @@ exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 var _reactBootstrap = require("react-bootstrap");
+
+var _constants = require("../constants");
 
 var _reactRouterDom = require("react-router-dom");
 
@@ -47385,7 +47391,7 @@ class CreateIdea extends _react.default.Component {
   render() {
     if (this.state.toHome) {
       return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
-        to: "/nearideas"
+        to: _constants.APP_PATH
       });
     }
 
@@ -47394,10 +47400,13 @@ class CreateIdea extends _react.default.Component {
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "m-auto my-6"
     }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      to: "/nearideas"
-    }, "Back"), /*#__PURE__*/_react.default.createElement("h2", {
-      className: "bg-black text-white"
-    }, "Create a new idea"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form, {
+      className: "border-solid border-4 border-black-200 p-2",
+      to: _constants.APP_PATH
+    }, "Back"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "mt-4 text-xl font-medium"
+    }, /*#__PURE__*/_react.default.createElement("h2", {
+      className: "bg-black text-white p-2 text-center"
+    }, "Create a new idea")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form, {
       noValidate: true,
       onSubmit: e => {
         e.preventDefault();
@@ -47412,7 +47421,7 @@ class CreateIdea extends _react.default.Component {
         this.updateTitle(e.target.value);
       },
       type: "text",
-      placeholder: "Title"
+      placeholder: "Title of your idea"
     })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
       className: "my-5"
     }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Control, {
@@ -47420,11 +47429,11 @@ class CreateIdea extends _react.default.Component {
         this.updateLink(e.target.value);
       },
       type: "text",
-      placeholder: "link"
+      placeholder: "Link to your idea"
     })), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
       className: "my-5"
     }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-      className: "bg-blue-400",
+      className: "bg-blue-400 p-2",
       variant: "primary",
       type: "submit"
     }, "Create"))))));
@@ -47434,7 +47443,7 @@ class CreateIdea extends _react.default.Component {
 
 var _default = CreateIdea;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Idea.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","../constants":"constants.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/Idea.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47452,11 +47461,42 @@ const Idea = ({
   idea,
   upvoteIdea
 }) => /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card, {
-  className: "bg-gray-400 px-4 py-2 m-2"
-}, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.title), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.owner_account_id), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.vote_count), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.link), /*#__PURE__*/_react.default.createElement("button", {
-  className: "w-7 bg-yellow-300",
+  className: "flex bg-gray-400 w-3/6 mx-24 py-2 m-3"
+}, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
+  className: "flex w-full justify-evenly"
+}, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  className: "flex flex-col w-4/6"
+}, /*#__PURE__*/_react.default.createElement("div", {
+  className: "flex text-xl font-medium"
+}, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, " ", idea.title), /*#__PURE__*/_react.default.createElement("div", {
+  className: "ml-4"
+}, /*#__PURE__*/_react.default.createElement("a", {
+  href: idea.link
+}, /*#__PURE__*/_react.default.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: "24",
+  height: "24",
+  viewBox: "0 0 24 24"
+}, /*#__PURE__*/_react.default.createElement("path", {
+  d: "M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z"
+}))))), /*#__PURE__*/_react.default.createElement("div", {
+  className: "flex"
+}, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, "Created by", " ", /*#__PURE__*/_react.default.createElement("a", {
+  href: `https://wallet.testnet.near.org/profile/${idea.owner_account_id}`,
+  className: "underline"
+}, idea.owner_account_id), " "))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Col, {
+  className: "flex justify-end w-1/6"
+}, /*#__PURE__*/_react.default.createElement("button", {
+  className: "w-7",
   onClick: () => upvoteIdea(idea)
-}, "Up Vote"));
+}, /*#__PURE__*/_react.default.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: "24",
+  height: "24",
+  viewBox: "0 0 24 24"
+}, /*#__PURE__*/_react.default.createElement("path", {
+  d: "M24 22h-24l12-20z"
+})), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Card.Text, null, idea.vote_count)))));
 
 var _default = Idea;
 exports.default = _default;
@@ -48321,6 +48361,11 @@ class App extends _react.Component {
     (0, _defineProperty2.default)(this, "upvoteIdea", async ({
       idea_id
     }) => {
+      if (!this.props.wallet.isSignedIn()) {
+        window.alert("You need to sign in to vote an idea!");
+        return;
+      }
+
       try {
         await this.props.contract.upvote_idea({
           idea_id
@@ -48334,7 +48379,7 @@ class App extends _react.Component {
     });
     (0, _defineProperty2.default)(this, "signOut", async () => {
       this.props.wallet.signOut();
-      setTimeout(window.location.replace(window.location.origin + "/nearideas"), 500);
+      setTimeout(window.location.replace(window.location.origin + _constants.APP_PATH), 500);
     });
     this.state = {
       ideas: []
@@ -48355,7 +48400,7 @@ class App extends _react.Component {
 
   render() {
     const redirectIfNotSignedIn = child => this.props.wallet.isSignedIn() ? child : /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
-      to: "/nearideas"
+      to: _constants.APP_PATH
     });
 
     const RenderIdeas = ({
@@ -48368,11 +48413,13 @@ class App extends _react.Component {
         key: `${i}`
       }));
       return /*#__PURE__*/_react.default.createElement("div", {
-        className: "flex flex-col px-4 py-2 m-2"
+        className: "flex flex-col px-4 py-2 justify-center items-center"
       }, list);
     };
 
-    return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_Header.default, {
+    return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
+      className: "space-y-5"
+    }, /*#__PURE__*/_react.default.createElement(_Header.default, {
       signIn: this.signIn,
       signOut: this.signOut,
       wallet: this.props.wallet
@@ -48392,13 +48439,13 @@ class App extends _react.Component {
           }
         },
         to: "/create_idea",
-        className: "w-24 bg-yellow-300"
-      }, "Create Idea"), /*#__PURE__*/_react.default.createElement("h2", {
-        className: "py-4"
+        className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      }, "Post a new idea"), /*#__PURE__*/_react.default.createElement("h2", {
+        className: "py-4 font-bold"
       }, "Total Ideas: ", this.state.ideas.length), /*#__PURE__*/_react.default.createElement(RenderIdeas, {
         ideas: this.state.ideas
       }))
-    })));
+    }))));
   }
 
 }
@@ -69649,7 +69696,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59862" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51460" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
